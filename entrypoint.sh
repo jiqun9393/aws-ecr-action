@@ -16,7 +16,7 @@ function main() {
   sanitize "${INPUT_ACCOUNT_ID}" "account_id"
   sanitize "${INPUT_REPO}" "repo"
 
-  ACCOUNT_URL="$INPUT_ACCOUNT_ID.dkr.ecr.$INPUT_REGION.amazonaws.com"
+  ACCOUNT_URL="$INPUT_ACCOUNT_ID.dkr.ecr.$INPUT_REGION.amazonaws.com.cn"
 
   aws_configure
   assume_role
@@ -50,7 +50,7 @@ function login() {
 
   for i in ${INPUT_REGISTRY_IDS//,/ }
   do
-    aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $i.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $i.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com.cn
   done
 
   echo "== FINISHED LOGIN"
